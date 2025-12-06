@@ -13,7 +13,8 @@ class	Fixed
 		Fixed(const Fixed& copy);
 		Fixed&	operator=(const Fixed& other);
 	private:
-		int		raw_;
+		int					fixed_point_number_;
+		static const int	fractal_bits_ = 8;
 };
 
 # endif // MY_FIRST_CLASS
