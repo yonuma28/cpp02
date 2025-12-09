@@ -1,20 +1,46 @@
-# ifndef MY_FIRST_CLASS
+#ifndef FIXED_H
+#define FIXED_H
+#include <cmath>
+#include <iostream>
 
-# include <iostream>
-# include <string>
-
-class	Fixed
-{
+class Fixed {
 	public:
 		Fixed();
+		explicit Fixed(const int value);
+		explicit Fixed(const float value);
+		Fixed(const Fixed &other);
+		Fixed &operator=(const Fixed &fixed);
 		~Fixed();
-		int 	getRawBits( void ) const;
-		void 	setRawBits( int const raw );
-		Fixed(const Fixed& copy);
-		Fixed&	operator=(const Fixed& other);
+
+		Fixed& operator--();
+		Fixed& operator++();
+		Fixed operator--(int);
+		Fixed operator++(int);
+		Fixed operator+(const Fixed&) const;
+		Fixed operator-(const Fixed&) const;
+		Fixed operator*(const Fixed&) const;
+		Fixed operator/(const Fixed&) const;
+
+		int getRawBits() const;
+		void setRawBits(int const raw);
+		float toFloat() const;
+		int toInt() const;
+		static Fixed& min(Fixed& fixed1, Fixed& fixed2);
+		static const Fixed& min(const Fixed& fixed1, const Fixed& fixed2);
+		static Fixed& max(Fixed& fixed1, Fixed& fixed2);
+		static const Fixed& max(const Fixed& fixed1, const Fixed& fixed2);
+
 	private:
-		int					fixed_point_number_;
-		static const int	fractal_bits_ = 8;
+		int fixed_point_num_;
+		static const int fractional_bits_ = 8;
 };
 
-# endif // MY_FIRST_CLASS
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
+bool operator>(const Fixed&, const Fixed&);
+bool operator<(const Fixed&, const Fixed&);
+bool operator<=(const Fixed&, const Fixed&);
+bool operator>=(const Fixed&, const Fixed&);
+bool operator==(const Fixed&, const Fixed&);
+bool operator!=(const Fixed&, const Fixed&);
+
+#endif

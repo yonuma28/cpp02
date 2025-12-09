@@ -14,7 +14,6 @@
 
 Fixed::Fixed(void)
 {
-	raw_ = 0;
 	std::cout << "Default constructor called" << std::endl;
 }
 
@@ -26,7 +25,7 @@ Fixed::~Fixed(void)
 int	Fixed::getRawBits(void)	const
 {
 	std::cout << "getRawBits member function called" << std::endl;
-	return raw_;
+	return fractal_bits_;
 }
 
 void Fixed::setRawBits(int const raw) {
@@ -37,7 +36,7 @@ void Fixed::setRawBits(int const raw) {
 Fixed::Fixed(const Fixed& copy)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	fixed_point_number_ = copy.raw_;
+	fixed_point_number_ = copy.fractal_bits_;
 }
 
 Fixed&	Fixed::operator=(const Fixed& other)
