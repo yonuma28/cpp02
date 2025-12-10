@@ -10,7 +10,7 @@ Fixed::Fixed(const Fixed &copy) {
     *this = copy;
 }
 
-Fixed &Fixed::operator=(const Fixed &fixed) {
+Fixed& Fixed::operator=(const Fixed &fixed) {
     if (this != &fixed) {
         this->fixed_point_num_ = fixed.getRawBits();
     }
