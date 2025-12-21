@@ -6,13 +6,13 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:52:36 by yonuma            #+#    #+#             */
-/*   Updated: 2025/12/06 12:52:36 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/12/21 14:59:51 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Fixed.hpp"
 
-Fixed::Fixed(void)
+Fixed::Fixed(void) : fixed_point_number_(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -25,7 +25,7 @@ Fixed::~Fixed(void)
 int	Fixed::getRawBits(void)	const
 {
 	std::cout << "getRawBits member function called" << std::endl;
-	return fractal_bits_;
+	return fixed_point_number_;
 }
 
 void Fixed::setRawBits(int const raw) {
@@ -36,7 +36,7 @@ void Fixed::setRawBits(int const raw) {
 Fixed::Fixed(const Fixed& copy)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	fixed_point_number_ = copy.fractal_bits_;
+	fixed_point_number_ = copy.getRawBits();
 }
 
 Fixed&	Fixed::operator=(const Fixed& other)
