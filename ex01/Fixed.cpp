@@ -2,6 +2,7 @@
 
 Fixed::Fixed()
 {
+	fixed_point_number_ = 0;
 	std::cout << "Default constructor called" << std::endl;
 }
 
@@ -17,9 +18,8 @@ Fixed::Fixed(const int	input) : fixed_point_number_(input << Fixed::fractal_bits
 
 Fixed::Fixed(const float input) 
 {
-    float scale = (1 << Fixed::fractal_bits_);
-    float scaled_and_rounded = roundf(input * scale);
-    fixed_point_number_ = (int)scaled_and_rounded;
+	std::cout << "Float constructor called" << std::endl;
+	fixed_point_number_ = static_cast<int>(roundf(input * (1 << Fixed::fractal_bits_)));
 }
 
 Fixed::Fixed(const Fixed& copy) : fixed_point_number_(copy.fixed_point_number_) 

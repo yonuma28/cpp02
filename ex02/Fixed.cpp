@@ -1,7 +1,4 @@
-#include "Fixed.h"
-#include <iostream>
-#include <cmath>
-#include <iomanip>
+#include "Fixed.hpp"
 
 
 Fixed::Fixed() : fixed_point_num_(0) {}
@@ -50,59 +47,64 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
 
 Fixed Fixed::operator+(const Fixed &fixed) const {
     Fixed result;
-    const long long sum = (long long)this->getRawBits() + fixed.getRawBits();
+    const long sum = static_cast<long>(this->getRawBits()) + fixed.getRawBits();
     result.setRawBits(static_cast<int>(sum));
     return result;
 }
 
 Fixed Fixed::operator-(const Fixed &fixed) const {
     Fixed result;
-    const long long diff = (long long)this->getRawBits() - fixed.getRawBits();
+    const long diff = static_cast<long>(this->getRawBits()) - fixed.getRawBits();
     result.setRawBits(static_cast<int>(diff));
     return result;
 }
 
 Fixed Fixed::operator*(const Fixed &fixed) const {
     Fixed result;
-    const long long product = (long long)this->getRawBits() * fixed.getRawBits();
+    const long product = static_cast<long>(this->getRawBits()) * fixed.getRawBits();
     result.setRawBits(static_cast<int>(product >> Fixed::fractional_bits_));
     return result;
 }
 
 Fixed Fixed::operator/(const Fixed &fixed) const {
     Fixed result;
-    const long long shifted = (long long)this->getRawBits() << Fixed::fractional_bits_;
+    const long shifted = static_cast<long>(this->getRawBits()) << Fixed::fractional_bits_;
 
-    if (fixed.getRawBits() == 0) {
-        std::cout << "DO NOT ENTER 0." << std::endl;
-    }
+    if (fixed.getRawBits() == 0)
+		return result;
 
     result.setRawBits(static_cast<int>(shifted / fixed.getRawBits()));
     return result;
 }
 
-bool operator<(const Fixed &fixed1, const Fixed &fixed2) {
-    return fixed1.getRawBits() < fixed2.getRawBits();
+bool	Fixed::operator<(const Fixed& other) const
+{
+	return this->getRawBits() < other.getRawBits();
 }
 
-bool operator>(const Fixed &fixed1, const Fixed &fixed2) {
-    return fixed2 < fixed1;
+bool	Fixed::operator>(const Fixed& other) const
+{
+	return other < *this;
 }
 
-bool operator<=(const Fixed &fixed1, const Fixed &fixed2) {
-    return !(fixed2 < fixed1);
+bool	Fixed::operator<=(const Fixed& other) const
+{
+	return !(other < *this);
 }
 
-bool operator>=(const Fixed &fixed1, const Fixed &fixed2) {
-    return !(fixed1 < fixed2);
+bool	Fixed::operator>=(const Fixed& other) const
+{
+	return !(*this < other);
 }
 
-bool operator==(const Fixed &fixed1, const Fixed &fixed2) {
-    return fixed1.getRawBits() == fixed2.getRawBits();
+bool	Fixed::operator==(const Fixed& other) const
+{
+	return this->getRawBits() == other.getRawBits();
 }
 
-bool operator!=(const Fixed &fixed1, const Fixed &fixed2) {
-    return !(fixed1 == fixed2);
+bool	Fixed::operator!=(const Fixed& other) const
+{
+	return !(*this == other);
 }
 
 Fixed& Fixed::operator++() {

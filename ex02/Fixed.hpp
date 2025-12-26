@@ -21,6 +21,13 @@ class Fixed {
 		Fixed operator*(const Fixed&) const;
 		Fixed operator/(const Fixed&) const;
 
+		bool operator>(const Fixed& other) const;
+		bool operator<(const Fixed& other) const;
+		bool operator>=(const Fixed& other) const;
+		bool operator<=(const Fixed& other) const;
+		bool operator==(const Fixed& other) const;
+		bool operator!=(const Fixed& other) const;
+
 		int getRawBits() const;
 		void setRawBits(int const raw);
 		float toFloat() const;
@@ -36,11 +43,4 @@ class Fixed {
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
-bool operator>(const Fixed&, const Fixed&);
-bool operator<(const Fixed&, const Fixed&);
-bool operator<=(const Fixed&, const Fixed&);
-bool operator>=(const Fixed&, const Fixed&);
-bool operator==(const Fixed&, const Fixed&);
-bool operator!=(const Fixed&, const Fixed&);
-
 #endif

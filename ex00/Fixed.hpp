@@ -1,4 +1,5 @@
-# ifndef MY_FIRST_CLASS
+#ifndef MY_FIRST_CLASS
+# define MY_FIRST_CLASS
 
 # include <iostream>
 
@@ -28,4 +29,4 @@ class	Fixed
 		static const int	fractal_bits_ = 8;
 };
 
-# endif // MY_FIRST_CLASS
+#endif // MY_FIRST_CLASS
