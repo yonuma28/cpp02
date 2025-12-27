@@ -6,8 +6,8 @@
 class Fixed {
 	public:
 		Fixed();
-		explicit Fixed(const int value);
-		explicit Fixed(const float value);
+		Fixed(const int value);
+		Fixed(const float value);
 		Fixed(const Fixed &other);
 		Fixed &operator=(const Fixed &fixed);
 		~Fixed();
@@ -43,4 +43,5 @@ class Fixed {
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
-#endif
+
+#endif //FIXED_HPP

@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/06 12:52:36 by yonuma            #+#    #+#             */
-/*   Updated: 2025/12/26 15:33:02 by yonuma           ###   ########.fr       */
+/*   Updated: 2025/12/27 15:16:38 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	Fixed::setRawBits(int const raw)
 {
 	fixed_point_number_ = raw;
 }
-
 
 Fixed::Fixed(const Fixed& copy)
 {
