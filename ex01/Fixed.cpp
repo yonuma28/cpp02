@@ -1,6 +1,8 @@
 # include "Fixed.hpp"
 
-Fixed::Fixed()
+const int Fixed::fractal_bits_ = 8;
+
+Fixed::Fixed() : fixed_point_number_(0)
 {
 	fixed_point_number_ = 0;
 	std::cout << "Default constructor called" << std::endl;
@@ -11,20 +13,24 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const int	input) : fixed_point_number_(input << Fixed::fractal_bits_)
+Fixed::Fixed(const int	input)
 {
 	std::cout << "Int constructor called" << std::endl;
+	fixed_point_number_ = input << fractal_bits_;
 }
 
 Fixed::Fixed(const float input) 
 {
 	std::cout << "Float constructor called" << std::endl;
-	fixed_point_number_ = static_cast<int>(roundf(input * (1 << Fixed::fractal_bits_)));
+    float scale = (1 << fractal_bits_);
+    float scaled_and_rounded = roundf(input * scale);
+    fixed_point_number_ = (int)scaled_and_rounded;
 }
 
-Fixed::Fixed(const Fixed& copy) : fixed_point_number_(copy.fixed_point_number_) 
+Fixed::Fixed(const Fixed& copy)
 {
-    std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
+	fixed_point_number_ = copy.getRawBits();
 }
 
 int	Fixed::getRawBits(void) const

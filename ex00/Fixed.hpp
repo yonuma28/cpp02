@@ -5,6 +5,10 @@
 
 class	Fixed
 {
+	private:
+		int					fixed_point_number_; // 固定小数点数の値を格納する
+		static const int	fractal_bits_ = 8; // ビット数を格納する定数
+
 	public:
 		// OCM
 		Fixed();
@@ -23,10 +27,6 @@ class	Fixed
 		 * @param raw 設定する生のビット値
 		*/
 		void 	setRawBits( int const raw );
-
-	private:
-		int					fixed_point_number_;
-		static const int	fractal_bits_ = 8;
 };
 
 #endif // MY_FIRST_CLASS
