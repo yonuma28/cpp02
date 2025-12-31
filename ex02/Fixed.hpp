@@ -4,6 +4,10 @@
 #include <iostream>
 
 class Fixed {
+	private:
+		int fixed_point_num_;
+		static const int fractional_bits_ = 8;
+
 	public:
 		Fixed();
 		Fixed(const int value);
@@ -28,18 +32,18 @@ class Fixed {
 		bool operator==(const Fixed& other) const;
 		bool operator!=(const Fixed& other) const;
 
-		int getRawBits() const;
-		void setRawBits(int const raw);
-		float toFloat() const;
-		int toInt() const;
+		int 	getRawBits() const;
+		void 	setRawBits(int const raw);
+		float 	toFloat() const;
+		int 	toInt() const;
+	
+		// min
 		static Fixed& min(Fixed& fixed1, Fixed& fixed2);
 		static const Fixed& min(const Fixed& fixed1, const Fixed& fixed2);
+		
+		//max
 		static Fixed& max(Fixed& fixed1, Fixed& fixed2);
 		static const Fixed& max(const Fixed& fixed1, const Fixed& fixed2);
-
-	private:
-		int fixed_point_num_;
-		static const int fractional_bits_ = 8;
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
